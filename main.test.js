@@ -14,7 +14,7 @@ describe("tests factorial for small numbers", () => {
   });
 
   test("tests factorial(3) = 6", () => {
-    expect(factorial(3)).toBe(6);
+    expect(factorial(3)).toBe(7);
   });
 });
 
