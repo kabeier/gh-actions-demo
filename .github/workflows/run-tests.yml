@@ -2,8 +2,6 @@ name: Run Test Suite
 
 on:
   push:
-    branches:
-      - dev
 
   pull_request:
     branches:
@@ -14,6 +12,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+   steps-typo: oops
 
     steps:
       - name: Checkout repository
