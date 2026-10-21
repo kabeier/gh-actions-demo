@@ -1,26 +1,26 @@
-name: Run Test Suite
+name: Run Test Suite (Node 20)
 
 on:
   push:
-    branches:
-      - dev
-
-  pull_request:
-    branches:
-      - main
-
-  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build Docker image
-        run: docker build -t app-test .
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: Run tests in container
-        run: docker run app-test
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Jest
+        run: npm install jest
+
+      - name: Run tests
+        run: |
+          npm test || (echo "❌ Tests failed" && exit 1)
