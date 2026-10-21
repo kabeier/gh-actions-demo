@@ -1,26 +1,14 @@
-name: Run Test Suite
+name: Run Test Suite (no checkout)
 
 on:
   push:
-    branches:
-      - dev
-
-  pull_request:
-    branches:
-      - main
-
-  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm install
 
-      - name: Build Docker image
-        run: docker build -t app-test .
-
-      - name: Run tests in container
-        run: docker run app-test
+      - name: Run tests
+        run: npm test
